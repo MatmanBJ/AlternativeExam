@@ -1,2 +1,2 @@
-# AlternativeExam
+# Метод резолюций
 Repository for alternative exam
