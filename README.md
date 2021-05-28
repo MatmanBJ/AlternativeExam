@@ -142,4 +142,4 @@ Please write file name(<file name>):
 
 1. [Документ с теорией](https://docs.google.com/document/d/1r_mcCiTdolnnHsmiRI_9j5ZyZ3upzpUTGpa-gEHu6A0/edit?usp=sharing);
 2. [Документ с методами](https://docs.google.com/document/d/1CQF3K2Z_RgfvqFVIwOvWBBYwGXIVb4-NkI3j6AR70_U/edit?usp=sharing);
-3. [Презентация](https://docs.google.com/presentation/d/1FEjB-ixD_4w8hBM2LGQj1OG16Mslhync4m7j_d_NMFs/edit?usp=sharing);
+3. [Презентация](https://docs.google.com/presentation/d/1FEjB-ixD_4w8hBM2LGQj1OG16Mslhync4m7j_d_NMFs/edit?usp=sharing).
