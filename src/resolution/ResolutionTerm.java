@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * but they can have term type (constants, variables and functions) and terms list (only for functions).
  * Terms [instead of predicates and "classic" statement-logic variables] in the predicate (and in the functions) can't change their place.
  * @author MatmanBJ
- * @version alpha 0.25
+ * @version alpha 0.29
  */
 public class ResolutionTerm
 {

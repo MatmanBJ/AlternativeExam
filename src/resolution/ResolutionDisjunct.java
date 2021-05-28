@@ -11,7 +11,7 @@ import java.util.Comparator;
  * Variables and predicates can be sorted (in alphabet order) and refreshed (deleted repeated vars/preds, changed to 1 or empty disjunct).
  * A disjunct containing an information about id, contrary parents, list of vars/preds (in order).
  * @author MatmanBJ
- * @version alpha 0.25
+ * @version alpha 0.29
  */
 public class ResolutionDisjunct implements Comparable<ResolutionDisjunct>
 {
@@ -281,18 +281,28 @@ public class ResolutionDisjunct implements Comparable<ResolutionDisjunct>
 		return 0;
 	}
 	
-	public String toOutputString (int localIndex)
+	public String toOutputStringOnly (int localIndex)
 	{
 		String localOutputStringDisjunct;
-		localOutputStringDisjunct = "№" + String.valueOf(localIndex) + " (id " + String.valueOf(id) + ")" + ": (" + String.valueOf(parents[0]) + ", " + String.valueOf(parents[1]) + ", " + String.valueOf(contrary) + ") " + this.toString() + "\n";
+		localOutputStringDisjunct = "№" + String.valueOf(localIndex) + " (id " + String.valueOf(id) + ")" + ": (" + String.valueOf(parents[0]) + ", " + String.valueOf(parents[1]) + ", " + String.valueOf(contrary) + ") " + this.toString();
+		return localOutputStringDisjunct;
+	}
+	
+	public String toOutputString (int localIndex)
+	{
+		return toOutputStringOnly(localIndex) + "\n";
+	}
+	
+	public String toOutputStringOnlyPredicate (int localIndex)
+	{
+		String localOutputStringDisjunct;
+		localOutputStringDisjunct = "№" + String.valueOf(localIndex) + " (id " + String.valueOf(id) + ")" + ": (" + String.valueOf(parents[0]) + ", " + String.valueOf(parents[1]) + ", " + String.valueOf(contrary) + ") " + this.toStringPredicate();
 		return localOutputStringDisjunct;
 	}
 	
 	public String toOutputStringPredicate (int localIndex)
 	{
-		String localOutputStringDisjunct;
-		localOutputStringDisjunct = "№" + String.valueOf(localIndex) + " (id " + String.valueOf(id) + ")" + ": (" + String.valueOf(parents[0]) + ", " + String.valueOf(parents[1]) + ", " + String.valueOf(contrary) + ") " + this.toStringPredicate() + "\n";
-		return localOutputStringDisjunct;
+		return toOutputStringOnlyPredicate(localIndex) + "\n";
 	}
 	
 	public String toReadableString ()

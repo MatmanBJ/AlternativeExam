@@ -1,118 +1,35 @@
 // Alternative exam -- 4 term
 // © Matthew Sobolewski and Victor Stepovik
-// Resolution method version alpha 0.25
+// "A GIANT OF THOUHT, A FATHER OF RUSSIAN RES(V)OLUTION"
+// Resolution method version alpha 0.29
 // Updates:
-// -- FILE OUTPUT IS UNUPDATED
-// -- Some methods has been updated
+// -- try/catch/finally added for the main class (with lists of potential commands)
+// -- each iteration demonstration added (only for "all number" method)
+// -- idz function added
+// -- semantic resolution minor bug fixes
+// -- output function major update
+// -- file output for predicate added
+// -- old examples deleted, new files with examples added
+// -- main class minor bug fixes
 
 package resolution;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.HashSet;
 
 /**
  * Main class "ResolutionMethod"
  * @author MatmanBJ
- * @version alpha 0.25
+ * @version alpha 0.29
  */
 public class ResolutionMethod
 {
-	public static void ExampleOne() // old and unupdated example
-	{
-		/*ResolutionVar a = new ResolutionVar('a');
-		ResolutionVar b = new ResolutionVar('b');
-		
-		ResolutionVariable yesa = new ResolutionVariable();
-		ResolutionVariable yesb = new ResolutionVariable();
-		ResolutionVariable noa = new ResolutionVariable();
-		ResolutionVariable nob = new ResolutionVariable();
-		
-		ResolutionDisjunct one = new ResolutionDisjunct();
-		ResolutionDisjunct two = new ResolutionDisjunct();
-		
-		ResolutionFunction f = new ResolutionFunction();
-		ResolutionFunction F;
-		
-		yesa.SetDenial(true);
-		yesb.SetDenial(true);
-		noa.SetDenial(false);
-		nob.SetDenial(false);
-		yesa.SetVar(a);
-		yesb.SetVar(b);
-		noa.SetVar(a);
-		nob.SetVar(b);
-		
-		one.SetVariables(yesa);
-		one.SetVariables(yesb);
-		two.SetVariables(noa);
-		two.SetVariables(nob);
-		
-		f.SetDisjuncts(one);
-		f.SetDisjuncts(two);
-		
-		//f.GetFunction();
-		//F = f.Resolution();
-		//F.GetFunction();
-		f.GetFunction();*/
-		
-		// new example
-		
-		/*ResolutionVar x = new ResolutionVar ('x');
-		ResolutionVar y = new ResolutionVar ('y');
-		ResolutionVar z = new ResolutionVar ('z');
-		ResolutionVar t = new ResolutionVar ('t');
-		ResolutionVar s = new ResolutionVar ('s');*/
-	}
-	public static void ExampleTwo ()
-	{
-		ArrayList<ResolutionVariable> variables = new ArrayList<ResolutionVariable>();
-		
-		variables.add(new ResolutionVariable(false, "x"));
-		variables.add(new ResolutionVariable(false, "y"));
-		variables.add(new ResolutionVariable(false, "z"));
-		ResolutionDisjunct d_one = new ResolutionDisjunct(variables);
-		variables.removeAll(variables);
-		
-		variables.add(new ResolutionVariable(false, "x"));
-		variables.add(new ResolutionVariable(false, "t"));
-		variables.add(new ResolutionVariable(true, "s"));
-		ResolutionDisjunct d_two = new ResolutionDisjunct(variables);
-		variables.removeAll(variables);
-		
-		variables.add(new ResolutionVariable(false, "x"));
-		variables.add(new ResolutionVariable(false, "s"));
-		ResolutionDisjunct d_three = new ResolutionDisjunct(variables);
-		variables.removeAll(variables);
-		
-		variables.add(new ResolutionVariable(false, "x"));
-		variables.add(new ResolutionVariable(true, "y"));
-		variables.add(new ResolutionVariable(true, "t"));
-		ResolutionDisjunct d_four = new ResolutionDisjunct(variables);
-		variables.removeAll(variables);
-		
-		variables.add(new ResolutionVariable(true, "x"));
-		ResolutionDisjunct d_five = new ResolutionDisjunct(variables);
-		variables.removeAll(variables);
-		
-		variables.add(new ResolutionVariable(true, "z"));
-		ResolutionDisjunct d_six = new ResolutionDisjunct(variables);
-		variables.removeAll(variables);
-		
-		ResolutionFunction d_func = new ResolutionFunction();
-		d_func.SetDisjuncts(d_one);
-		d_func.SetDisjuncts(d_two);
-		d_func.SetDisjuncts(d_three);
-		d_func.SetDisjuncts(d_four);
-		d_func.SetDisjuncts(d_five);
-		d_func.SetDisjuncts(d_six);
-		
-		//d_func.ResolutionFind();
-		//d_func.Resolution();
-		d_func.GetFunction();
-		//d_func_return.GetFunction();
-	}
+	private static List<String> logicList = Arrays.asList("statement", "predicate");
+	private static List<String> inputList = Arrays.asList("console", "file");
+	private static List<String> treatmentList = Arrays.asList("saturation", "preference", "strikeout", "strategies demonstration", "all", "all number", "all find", "idz", "all unique", "semantic");
+	private static List<String> treatmentListPredicate = Arrays.asList("all unique");
+	private static List<String> outputList = Arrays.asList("console", "file", "console file", "file console", "all", "none");
 	
 	public static void StrategiesDemonstration (ResolutionFunction localLocalRF) // resolution strategy demonstrations
 	{
@@ -146,17 +63,7 @@ public class ResolutionMethod
 	
 	public static ResolutionFunction TreatmentMain (String localString, ResolutionFunction localRF)
 	{
-		if (localString.equals("???"))
-		{
-			ResolutionFunction rfo = new ResolutionFunction(localRF);
-			ResolutionFunction rft = new ResolutionFunction(localRF);
-			rfo.ResolutionPreference();
-			//rft.ResolutionPreferenceTest();
-			rfo.GetFunction();
-			System.out.println("\n");
-			rft.GetFunction();
-		}
-		else if (localString.equals("saturation"))
+		if (localString.equals("saturation"))
 		{
 			localRF.ResolutionSaturation();
 		}
@@ -176,13 +83,34 @@ public class ResolutionMethod
 		{
 			localRF.ResolutionAll();
 		}
+		else if (localString.equals("all number"))
+		{
+			Scanner inputScanner = new Scanner(System.in);
+			System.out.println("Please write number of iterations:");
+			int localIters = inputScanner.nextInt();
+			System.out.println("Current number of iterations: " + localIters);
+			
+			localRF.ResolutionAllNumber(localIters);
+		}
 		else if (localString.equals("all find"))
 		{
 			localRF.ResolutionAllFind();
 		}
-		else if (localString.equals("unique"))
+		else if (localString.equals("idz"))
+		{
+			localRF.ResolutionIDZ();
+		}
+		else if (localString.equals("all unique"))
 		{
 			localRF.ResolutionAllUnique();
+		}
+		else if (localString.equals("semantic"))
+		{
+			localRF.ResolutionSemantic();
+		}
+		else if (localString.equals("semantic test"))
+		{
+			// NOTHING YET
 		}
 		else
 		{
@@ -193,7 +121,7 @@ public class ResolutionMethod
 	
 	public static ResolutionFunction TreatmentMainPredicate (String localString, ResolutionFunction localRF)
 	{
-		if (localString.equals("unique"))
+		if (localString.equals("all unique"))
 		{
 			localRF.ResolutionAllUniquePredicate();
 		}
@@ -308,6 +236,8 @@ public class ResolutionMethod
 			localOutput.ResolutionFileReadable("readable_" + localFS);
 			localOutput.ResolutionFileUnreadable("unreadable_" + localFS);
 		}
+		else if (localType.equals("none"))
+		{}
 		else
 		{
 			System.out.println("Incorrect type of output");
@@ -330,11 +260,11 @@ public class ResolutionMethod
 			String localFSArray [] = localFS.split("\\s");
 			if (localFSArray[1].equals("readable"))
 			{
-				localOutput.ResolutionFileReadable("readable_" + localFSArray[0]);
+				localOutput.ResolutionFileReadablePredicate("readable_" + localFSArray[0]);
 			}
 			else if (localFSArray[1].equals("unreadable"))
 			{
-				localOutput.ResolutionFileUnreadable("unreadable_" + localFSArray[0]);
+				localOutput.ResolutionFileUnreadablePredicate("unreadable_" + localFSArray[0]);
 			}
 			else
 			{
@@ -344,18 +274,18 @@ public class ResolutionMethod
 		else if (localType.equals("console file") || localType.equals("file console"))
 		{
 			System.out.println("---------- CONSOLE AND CHOOSED FILE OUTPUT ----------");
-			localOutput.GetFunction();
+			localOutput.GetFunctionPredicate();
 			Scanner outputScanner = new Scanner(System.in);
 			System.out.println("Please write file name and specification (<file name> <specification>):");
 			String localFS = outputScanner.nextLine();
 			String localFSArray [] = localFS.split("\\s");
 			if (localFSArray[1].equals("readable"))
 			{
-				localOutput.ResolutionFileReadable("readable_" + localFSArray[0]);
+				localOutput.ResolutionFileReadablePredicate("readable_" + localFSArray[0]);
 			}
 			else if (localFSArray[1].equals("unreadable"))
 			{
-				localOutput.ResolutionFileUnreadable("unreadable_" + localFSArray[0]);
+				localOutput.ResolutionFileUnreadablePredicate("unreadable_" + localFSArray[0]);
 			}
 			else
 			{
@@ -365,12 +295,12 @@ public class ResolutionMethod
 		else if (localType.equals("all"))
 		{
 			System.out.println("---------- CONSOLE AND ALL FILES OUTPUT ----------");
-			localOutput.GetFunction();
+			localOutput.GetFunctionPredicate();
 			Scanner outputScanner = new Scanner(System.in);
 			System.out.println("Please write file name (<file name>):");
 			String localFS = outputScanner.nextLine();
-			localOutput.ResolutionFileReadable("readable_" + localFS);
-			localOutput.ResolutionFileUnreadable("unreadable_" + localFS);
+			localOutput.ResolutionFileReadablePredicate("readable_" + localFS);
+			localOutput.ResolutionFileUnreadablePredicate("unreadable_" + localFS);
 		}
 		else
 		{
@@ -395,41 +325,64 @@ public class ResolutionMethod
 			
 			ResolutionDisjunct.SetMaxID();
 			
-			System.out.println("Please write type of logic (<type>):");
-			typeLogic = inputScanner.nextLine();
-			System.out.println("Please write type of input (<type>):");
-			typeInput = inputScanner.nextLine();
-			System.out.println("Please write type of treatment (<type>):");
-			typeTreatment = inputScanner.nextLine();
-			System.out.println("Please write type of output (<type 1> or <type 1> <type 2> or all):");
-			typeOutput = inputScanner.nextLine();
-			
-			if (typeLogic.equals("statement"))
+			try
 			{
-				localFunction = InputMain(typeInput);
-				localFunction = TreatmentMain(typeTreatment, localFunction);
-				OutputMain(localFunction, typeOutput);
+				System.out.println("Please write type of logic (<type>):");
+				typeLogic = inputScanner.nextLine();
+				if (logicList.contains(typeLogic) == false)
+				{
+					throw new Exception("Wrong type of logic!");
+				}
+				
+				System.out.println("Please write type of input (<type>):");
+				typeInput = inputScanner.nextLine();
+				if (inputList.contains(typeInput) == false)
+				{
+					throw new Exception("Wrong type of input!");
+				}
+				
+				System.out.println("Please write type of treatment (<type>):");
+				typeTreatment = inputScanner.nextLine();
+				if ((treatmentList.contains(typeTreatment) == false) && (treatmentListPredicate.contains(typeTreatment) == false))
+				{
+					throw new Exception("Wrong type of treatment for your logic type!");
+				}
+				
+				System.out.println("Please write type of output (<type 1> or <type 1> <type 2> or all):");
+				typeOutput = inputScanner.nextLine();
+				if (outputList.contains(typeOutput) == false)
+				{
+					throw new Exception("Wrong type of output!");
+				}
+				
+				if (typeLogic.equals("statement"))
+				{
+					localFunction = InputMain(typeInput);
+					localFunction = TreatmentMain(typeTreatment, localFunction);
+					OutputMain(localFunction, typeOutput);
+				}
+				else if (typeLogic.equals("predicate"))
+				{
+					localFunction = InputMainPredicate(typeInput);
+					localFunction = TreatmentMainPredicate(typeTreatment, localFunction);
+					OutputMainPredicate(localFunction, typeOutput);
+				}
+				
 			}
-			else if (typeLogic.equals("predicate"))
+			catch (Exception e)
 			{
-				localFunction = InputMainPredicate("console");
-				localFunction = TreatmentMainPredicate("unique", localFunction);
-				OutputMainPredicate(localFunction, "console");
-				//localFunction = InputMainPredicate(typeInput);
-				//localFunction = TreatmentMainPredicate(typeTreatment, localFunction);
-				//OutputMainPredicate(localFunction, typeOutput);
+				System.out.println("\nException caught in ResolutionMethod class:");
+				System.out.println(e.getMessage() + " Follow the instructions below to try again.\n");
 			}
-			else
+			finally
 			{
-				System.out.println("Incorrect type of logic! Try again");
+				System.out.println("Do you want to input something else? Press 0 to NO, press else to YES:");
+				key = inputScanner.nextInt();
+				inputScanner.nextLine();
 			}
-			
-			System.out.println("Do you want to input something else? Press 0 to NO, press else to YES:");
-			key = inputScanner.nextInt();
-			inputScanner.nextLine();
 		}
 		
 		inputScanner.close(); // be careful: it closes I/O system, so if you do it once, you can not use I/O again!
-		System.out.println("---------- Bye!!! ----------");
+		System.out.println("---------- PROGRAM TERMINATED ----------");
 	}
 }
